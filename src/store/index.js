@@ -1,14 +1,8 @@
 import { createStore, } from 'vuex'
+import number from './state/numState.js'
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    number
   }
 })

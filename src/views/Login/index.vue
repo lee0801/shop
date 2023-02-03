@@ -1,4 +1,7 @@
 <template>
+    <h2>{{ num }}</h2>
+    <h2>{{ numStatus }}</h2>
+    <button @click="handleLogin">修改为2</button>
     <div class="container-login">
         <div class="container-form">
             <el-form ref="formRef" :model="loginData" label-width="100px" class="demo-dynamic">
@@ -28,23 +31,36 @@
             </el-form>
         </div>
     </div>
+    
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue';
-
+import { useStore } from 'vuex'
 export default {
     name: 'ShopLogin',
     setup() {
+        //使用vuex中的数据
+        const store = useStore()
+        const count = store.state.number.count
+
         const data = reactive({
             loginData:{
                 username:'',
                 password:''
-            }
+            },
+            num:count,
+            numStatus:!store.getters["number/countStatus"]
         })
+        
+        const handleLogin = ()=>{
+            // store.commit('number/setCount',2)
+            store.dispatch('number/setCountPromise',2)
+        }
 
         return {
-            ...toRefs(data)
+            ...toRefs(data),
+            handleLogin
         }
     }
 };
