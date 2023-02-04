@@ -5,28 +5,28 @@ const routes = [
   {
     path:'/login',
     name:'login',
-    component:()=> import('@/views/Login')
+    component:()=> import('@/components/Login')
   },
   {
     path: '/',
     name: 'layout',
-    component: () => import('@/views/LayOut'),
-    redirect:'/roles',
+    component: () => import('@/components/LayOut'),
+    // redirect:'/roles',
     children: [
       {
         path: '/roles',
         name:'roles',
-        component: () => import('@/views/pages/rolesList.vue')
+        component: () => import('@/views/rolesList')
       },
       {
         path: '/user',
         name:'user',
-        component: () => import('@/views/pages/usersList.vue')
+        component: () => import('@/views/usersList')
       },
       {
         path:'/goods',
         name:'goods',
-        component: () => import('@/views/pages/goodsList')
+        component: () => import('@/views/goodsList')
       }
     ]
   }
